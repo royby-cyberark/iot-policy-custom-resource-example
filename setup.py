@@ -19,7 +19,10 @@ setuptools.setup(
     packages=setuptools.find_packages(where="cdk_custom_resource_example"),
 
     install_requires=[
-        "aws-cdk.core==1.87.1",
+        "aws-cdk.core>=1.93.0",
+        "aws-cdk.custom-resources>=1.93.0",
+        "aws-cdk.aws-lambda>=1.93.0",
+        "boto3>=1.17.28"
     ],
 
     python_requires=">=3.6",
