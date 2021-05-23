@@ -39,6 +39,10 @@ class IotPolicyResource(core.Construct):
         account_id = Stack.of(self).account
         region = Stack.of(self).region
 
+        # IMPORTANT! Setting resources to the exact policy name is the most restrictive we can be, but this will cause issues 
+        # When trying to update the policy name. 
+        # See this issue for more info: https://github.com/aws/aws-cdk/issues/14037
+        # A possible work around is setting resources to 'arn:aws:iot:{region}:{account_id}:policy/*', which is more permissive.
         lambda_role = iam.Role(
             scope=self,
             id=f'{id}LambdaRole',
@@ -87,4 +91,4 @@ class IotPolicyResource(core.Construct):
                 "policy_name": policy_name,
                 "policy_document": policy_document,
             },
-        )
+        )   
